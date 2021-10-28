@@ -2,22 +2,26 @@
 import { routerArrays } from "./types";
 export default {
   computed: {
+    // 清空缓存后从serverConfig.json读取默认配置并赋值到storage中
     layout() {
+      // 导航
       if (!this.$storage.layout) {
-        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-        this.$storage.layout = { layout: "vertical" };
+        this.$storage.layout = {
+          layout: this.$config?.Layout ?? "vertical",
+          theme: this.$config?.Theme ?? "default"
+        };
       }
+      // 路由
       if (
         !this.$storage.routesInStorage ||
         this.$storage.routesInStorage.length === 0
       ) {
-        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.$storage.routesInStorage = routerArrays;
       }
+      // 国际化
       if (!this.$storage.locale) {
-        // eslint-disable-next-line
-        this.$storage.locale = { locale: "zh" };
-        useI18n().locale.value = "zh";
+        this.$storage.locale = { locale: this.$config?.Locale ?? "zh" };
+        useI18n().locale.value = this.$config?.Locale ?? "zh";
       }
       return this.$storage?.layout.layout;
     }
