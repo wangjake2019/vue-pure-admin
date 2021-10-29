@@ -39,7 +39,7 @@
   .sidebar-container {
     transition: width 0.28s;
     width: $sideBarWidth !important;
-    background-color: $menuBg;
+    background: $menuBg;
     height: 100%;
     position: fixed;
     font-size: 0;
@@ -133,7 +133,7 @@
   .horizontal-header {
     display: flex;
     justify-content: space-around;
-    background-color: $menuBg;
+    background: $menuBg;
     width: 100%;
     height: 62px;
     align-items: center;
